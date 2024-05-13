@@ -24,7 +24,28 @@ func notFound(c *gin.Context) {
 }
 
 func getTodos(c *gin.Context) {
-	c.JSON(http.StatusOK, todos)
+	done := c.Query("done")
+	var res = []TodoList{}
+	switch done {
+	case "true":
+		for _, todo := range todos {
+			if todo.Done {
+				res = append(res, todo)
+			}
+		}
+	case "false":
+		for _, todo := range todos {
+			if !todo.Done {
+				res = append(res, todo)
+			}
+		}
+	case "":
+		res = todos
+	default:
+		c.JSON(http.StatusBadRequest, gin.H{"message": "done parameter should be either true or false"})
+		return
+	}
+	c.JSON(http.StatusOK, res)
 }
 func getTodoByID(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
@@ -54,6 +75,25 @@ func postTodo(c *gin.Context) {
 	c.JSON(http.StatusOK, todo)
 
 }
+
+func updateTodo(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		notFound(c)
+		return
+	}
+	for index := range todos {
+		if todos[index].ID == id {
+			err := c.BindJSON(&todos[index])
+			if err != nil {
+				c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			}
+			c.JSON(http.StatusOK, todos[index])
+			return
+		}
+	}
+	notFound(c)
+}
 func deleteTodo(c *gin.Context) {
 	id := c.Param("id")
 	intId, err := strconv.Atoi(id)
@@ -74,9 +114,10 @@ func deleteTodo(c *gin.Context) {
 func main() {
 	router := gin.Default()
 	router.GET("/todos", getTodos)
-	router.GET("/todos/:id", getTodoByID)
 	router.POST("/todos/", postTodo)
+	router.GET("/todos/:id", getTodoByID)
 	router.DELETE("/todos/:id", deleteTodo)
+	router.PATCH("/todos/:id", updateTodo)
 
 	router.Run("localhost:8080")
 }
