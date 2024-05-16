@@ -1,8 +1,10 @@
 package main
 
 import (
+	"database/sql"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
 	"strconv"
 )
@@ -14,18 +16,21 @@ type Todo struct {
 }
 
 func getTodos(c *gin.Context, todos *[]Todo) {
-
+	if *todos == nil {
+		db := c.MustGet("db").(*sql.DB)
+		getTodosFromDB(todos, db)
+	}
 	done := c.Query("done")
 	var res []Todo
 	switch done {
 	case "true":
 		res = Filter(
-			*todos,
+			todos,
 			func(todo Todo) bool { return todo.Done },
 		)
 	case "false":
 		res = Filter(
-			*todos,
+			todos,
 			func(todo Todo) bool { return !todo.Done },
 		)
 	case "":
@@ -37,6 +42,10 @@ func getTodos(c *gin.Context, todos *[]Todo) {
 	c.JSON(http.StatusOK, res)
 }
 func getTodoByID(c *gin.Context, todos *[]Todo) {
+	if *todos == nil {
+		db := c.MustGet("db").(*sql.DB)
+		getTodosFromDB(todos, db)
+	}
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		notFound(c)
@@ -52,6 +61,10 @@ func getTodoByID(c *gin.Context, todos *[]Todo) {
 }
 
 func postTodo(c *gin.Context, todos *[]Todo) {
+	db := c.MustGet("db").(*sql.DB)
+	if *todos == nil {
+		getTodosFromDB(todos, db)
+	}
 	body, err := c.GetRawData()
 	if err != nil {
 		badRequest(c, "Request body is empty")
@@ -72,14 +85,15 @@ func postTodo(c *gin.Context, todos *[]Todo) {
 	var todo Todo
 	todo.Title = title.(string)
 
-	done, ok := m["done"]
-	if doneBool, correctType := done.(bool); ok && correctType && doneBool == true {
-		todo.Done = true
-	} else {
-		todo.Done = false
+	if done, ok := m["done"]; ok {
+		if doneBool, ok := done.(bool); ok {
+			todo.Done = doneBool
+		} else {
+			badRequest(c, "done parameter should be either true or false")
+			return
+		}
 	}
-
-	id := postTodoToDB(todo)
+	id := postTodoToDB(todo, db)
 	todo.ID = id
 	*todos = append(*todos, todo)
 	c.JSON(http.StatusOK, todo)
@@ -87,6 +101,10 @@ func postTodo(c *gin.Context, todos *[]Todo) {
 }
 
 func patchTodo(c *gin.Context, todos *[]Todo) {
+	db := c.MustGet("db").(*sql.DB)
+	if *todos == nil {
+		getTodosFromDB(todos, db)
+	}
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		notFound(c)
@@ -123,13 +141,17 @@ func patchTodo(c *gin.Context, todos *[]Todo) {
 		badRequest(c, "done parameter must be a boolean")
 		return
 	}
-	updateTodoInDB(*todo)
+	updateTodoInDB(*todo, db)
 	c.JSON(http.StatusOK, *todo)
 	return
 
 }
 
 func deleteTodo(c *gin.Context, todos *[]Todo) {
+	db := c.MustGet("db").(*sql.DB)
+	if *todos == nil {
+		getTodosFromDB(todos, db)
+	}
 	id := c.Param("id")
 	intId, err := strconv.Atoi(id)
 	if err != nil {
@@ -139,7 +161,7 @@ func deleteTodo(c *gin.Context, todos *[]Todo) {
 	for index, todo := range *todos {
 		if intId == todo.ID {
 			*todos = append((*todos)[:index], (*todos)[index+1:]...)
-			deleteTodoInDB(todo.ID)
+			deleteTodoInDB(todo.ID, db)
 			c.JSON(http.StatusOK, gin.H{"message": "Success"})
 			return
 		}
@@ -149,8 +171,12 @@ func deleteTodo(c *gin.Context, todos *[]Todo) {
 
 func main() {
 	var todos = new([]Todo)
-	getTodosFromDB(todos)
+	db := dbConnection()
 	router := gin.Default()
+	router.Use(func(context *gin.Context) {
+		context.Set("db", db)
+		context.Next()
+	})
 	router.GET("/todos", func(context *gin.Context) {
 		getTodos(context, todos)
 	})
@@ -167,5 +193,8 @@ func main() {
 		patchTodo(context, todos)
 	})
 
-	router.Run("localhost:8080")
+	err := router.Run("localhost:8080")
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 }

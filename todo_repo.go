@@ -16,16 +16,15 @@ func dbConnection() *sql.DB {
 	dbName := os.Getenv("DB_NAME")
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
-	connStr := "user=" + dbUser + " dbname=" + dbName + " password=" + dbPassword + " sslmode=disable"
+	dbPort := os.Getenv("DB_PORT")
+	connStr := "user=" + dbUser + " dbname=" + dbName + " password=" + dbPassword + " sslmode=disable" + " port=" + dbPort
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)
 	}
 	return db
 }
-func getTodosFromDB(todos *[]Todo) {
-	db := dbConnection()
-	defer db.Close()
+func getTodosFromDB(todos *[]Todo, db *sql.DB) {
 	rows, err := db.Query("SELECT id,title,done FROM todos")
 	if err != nil {
 		log.Fatal(err)
@@ -41,9 +40,7 @@ func getTodosFromDB(todos *[]Todo) {
 	}
 }
 
-func postTodoToDB(todo Todo) int {
-	db := dbConnection()
-	defer db.Close()
+func postTodoToDB(todo Todo, db *sql.DB) int {
 	row := db.QueryRow("INSERT INTO todos(done, title) VALUES ($1,$2) RETURNING id", todo.Done, todo.Title)
 	var id int
 	err := row.Scan(&id)
@@ -52,9 +49,7 @@ func postTodoToDB(todo Todo) int {
 	}
 	return id
 }
-func updateTodoInDB(todo Todo) Todo {
-	db := dbConnection()
-	defer db.Close()
+func updateTodoInDB(todo Todo, db *sql.DB) Todo {
 	row := db.QueryRow("UPDATE todos set done = $1, title=$2 where id = $3 returning id,title,done", todo.Done, todo.Title, todo.ID)
 	var res Todo
 	err := row.Scan(&res.ID, &res.Title, &res.Done)
@@ -63,9 +58,7 @@ func updateTodoInDB(todo Todo) Todo {
 	}
 	return res
 }
-func deleteTodoInDB(id int) {
-	db := dbConnection()
-	defer db.Close()
+func deleteTodoInDB(id int, db *sql.DB) {
 	_, err := db.Exec("DELETE FROM todos WHERE id = $1", id)
 	if err != nil {
 		log.Fatal(err)

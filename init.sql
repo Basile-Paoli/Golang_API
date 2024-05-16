@@ -2,6 +2,6 @@ create table todos
 (
     id serial
         primary key ,
-    description text,
+    title text,
     done bool
 );
