@@ -17,7 +17,8 @@ func dbConnection() *sql.DB {
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
 	dbPort := os.Getenv("DB_PORT")
-	connStr := "user=" + dbUser + " dbname=" + dbName + " password=" + dbPassword + " sslmode=disable" + " port=" + dbPort
+	dbHost := os.Getenv("DB_HOST")
+	connStr := "user=" + dbUser + " dbname=" + dbName + " password=" + dbPassword + " sslmode=disable" + " port=" + dbPort + " host=" + dbHost
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)

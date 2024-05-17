@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"encoding/json"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
@@ -173,6 +174,8 @@ func main() {
 	var todos = new([]Todo)
 	db := dbConnection()
 	router := gin.Default()
+
+	router.Use(cors.Default())
 	router.Use(func(context *gin.Context) {
 		context.Set("db", db)
 		context.Next()
@@ -180,7 +183,7 @@ func main() {
 	router.GET("/todos", func(context *gin.Context) {
 		getTodos(context, todos)
 	})
-	router.POST("/todos/", func(context *gin.Context) {
+	router.POST("/todos", func(context *gin.Context) {
 		postTodo(context, todos)
 	})
 	router.GET("/todos/:id", func(context *gin.Context) {
@@ -193,7 +196,7 @@ func main() {
 		patchTodo(context, todos)
 	})
 
-	err := router.Run("localhost:8080")
+	err := router.Run("0.0.0.0:8080")
 	if err != nil {
 		log.Fatal(err.Error())
 	}
