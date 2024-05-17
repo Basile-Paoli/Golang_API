@@ -1,0 +1,25 @@
+services:
+  database:
+    image: postgres:latest
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db-data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=todos
+      - POSTGRES_USER=user
+    ports:
+      - 5433:5432
+  api:
+    build:
+      context: Golang API
+    ports:
+      - 8080:8080
+  front:
+    build:
+      context: React-frontend
+    ports:
+      - 4173:4173
+      
+volumes:
+  db-data:

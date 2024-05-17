@@ -1,10 +1,13 @@
 import {useContext, useEffect, useRef, useState} from "react";
 import {TodosContext} from "./TodoList.jsx";
 import {apiUrl} from "../App.jsx";
+import PropTypes from "prop-types";
 
 export function AddTodoPopUp({toggleDisplay}) {
-    const {todos, setTodos} = useContext(TodosContext)
+    const {setTodos} = useContext(TodosContext)
     const popUpRef = useRef(null);
+    const inputRef = useRef(null);
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (popUpRef.current && !popUpRef.current.contains(event.target)) {
@@ -16,6 +19,7 @@ export function AddTodoPopUp({toggleDisplay}) {
             document.removeEventListener('mousedown', handleClickOutside)
         }
     }, [toggleDisplay]);
+
 
     const [title, setTitle] = useState("");
     const titleInputHandler = (e) => {
@@ -41,8 +45,7 @@ export function AddTodoPopUp({toggleDisplay}) {
                 console.log(error)
             })
     }
-    const clickHandler = (event) => {
-        event.persist()
+    const validateHandler = () => {
         const todo = {
             id: -1,
             title: title,
@@ -66,16 +69,22 @@ export function AddTodoPopUp({toggleDisplay}) {
                 </h1>
                 <div className=" flex m-auto mt-4 justify-center">
                     <span className="mr-3">Title : </span>
-                    <input onChange={titleInputHandler} value={title} placeholder="Title" autoFocus
+                    <input onChange={titleInputHandler} value={title} placeholder="Title" autoFocus ref={inputRef}
+                           onKeyDown={(e) => {
+                               if (e.key === "Enter") {
+                                   validateHandler()
+                               }
+                           }}
                            className="border-black border pl-1 "/>
                 </div>
-                <button onClick={(event) => {
-                    console.log(title)
-                    clickHandler(event)
-                }}
+                <button onClick={validateHandler}
                         className="bg-green-700 rounded p-2 text-white font-semibold m-auto flex pl-6 pr-6 mt-4">Validate
                 </button>
             </div>
         </div>
     )
+}
+
+AddTodoPopUp.propTypes = {
+    toggleDisplay: PropTypes.func.isRequired,
 }

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="843a12f2-1611-485e-b800-69bbc6df1d63" name="Changes" comment="add Docker integration">
+      <change afterPath="$PROJECT_DIR$/.idea/Todo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Golang API/.idea/Golang API.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Golang API/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Golang API/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Golang API/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/.eslintrc.cjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/postcss.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/public/vite.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/src/App.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/src/assets/react.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/src/components/AddTodo.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/src/components/AddTodoPopUp.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/src/components/DisplayTodoList.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/src/components/TodoList.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/src/main.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/tailwind.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/React-frontend/vite.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Golang API/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/postcss.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/public/vite.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/src/App.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/src/assets/react.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/src/components/AddTodo.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/src/components/AddTodoPopUp.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/src/components/DisplayTodoList.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/src/components/TodoList.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/src/main.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/tailwind.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled2/vite.config.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../../../Program Files/Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Basile-Paoli&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Basile-Paoli/Golang_API.git&quot;,
+    &quot;accountId&quot;: &quot;93a5d70a-0055-492f-bf02-2b874c8377eb&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2gaoY2G62BRk6UnrsecR2sdl05y" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "master",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "C:/Users/Basile/OneDrive/Documents/Dev/Todo",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.3.6\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.intellij.reactbuddy.reactComponents" value="false" />
+        <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
+        <entry key="com.intellij.reactbuddy.storybook" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Basile\OneDrive\Documents\Dev\Todo" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/untitled2/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-WS-241.15989.105" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="843a12f2-1611-485e-b800-69bbc6df1d63" name="Changes" comment="add react frontend" />
+      <created>1715960933304</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715960933304</updated>
+      <workItem from="1715960936402" duration="576000" />
+      <workItem from="1715961540432" duration="2000" />
+      <workItem from="1715961572137" duration="3451000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add react frontend" />
+    <MESSAGE value="add Docker integration" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Docker integration" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
