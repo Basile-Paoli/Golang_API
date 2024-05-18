@@ -142,7 +142,7 @@ func patchTodo(c *gin.Context, todos *[]Todo) {
 		badRequest(c, "done parameter must be a boolean")
 		return
 	}
-	updateTodoInDB(*todo, db)
+	go updateTodoInDB(*todo, db)
 	c.JSON(http.StatusOK, *todo)
 	return
 
@@ -162,7 +162,7 @@ func deleteTodo(c *gin.Context, todos *[]Todo) {
 	for index, todo := range *todos {
 		if intId == todo.ID {
 			*todos = append((*todos)[:index], (*todos)[index+1:]...)
-			deleteTodoInDB(todo.ID, db)
+			go deleteTodoInDB(todo.ID, db)
 			c.JSON(http.StatusOK, gin.H{"message": "Success"})
 			return
 		}

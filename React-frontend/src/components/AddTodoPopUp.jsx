@@ -33,7 +33,8 @@ export function AddTodoPopUp({toggleDisplay}) {
             body: JSON.stringify(todo),
             redirect: "follow"
         })
-            .then((res) => res.json().then((data) => {
+            .then((res) => res.json()
+            .then((data) => {
                 setTodos((prevTodos) => prevTodos.map((todo) => {
                     if (todo.id === -1) {
                         return {...todo, id: data.id}
@@ -51,7 +52,6 @@ export function AddTodoPopUp({toggleDisplay}) {
             title: title,
             done: false
         }
-        console.log(todo)
         setTodos((prevTodos) => [...prevTodos, todo])
         addTodo(todo)
         toggleDisplay(false)
@@ -61,11 +61,11 @@ export function AddTodoPopUp({toggleDisplay}) {
     return (
         <div className="items-center inset-0 p-14 fixed">
             <div className="bg-black opacity-50 inset-0 fixed"></div>
-            <div ref={popUpRef} className="rounded bg-white relative border-black border-2 max-w-4xl p-4 m-auto">
+            <div ref={popUpRef} className="rounded bg-white relative border-black border-2 max-w-4xl p-4  min-w-72 m-auto">
                 <h1 className="justify-between flex items-center font-bold text-xl">
                     <span className="m-auto">Ajouter une Todo</span>
                     <button onClick={() => toggleDisplay(false)}
-                            className="cursor-pointer relative text-3xl text-center">&times;</button>
+                            className="text-3xl hover:scale-110 hover:bg-gray-300 h-8 w-8 flex justify-center items-center">&times;</button>
                 </h1>
                 <div className=" flex m-auto mt-4 justify-center">
                     <span className="mr-3">Title : </span>
@@ -75,7 +75,7 @@ export function AddTodoPopUp({toggleDisplay}) {
                                    validateHandler()
                                }
                            }}
-                           className="border-black border pl-1 "/>
+                           className="border-black border pl-1"/>
                 </div>
                 <button onClick={validateHandler}
                         className="bg-green-700 rounded p-2 text-white font-semibold m-auto flex pl-6 pr-6 mt-4">Validate

@@ -17,12 +17,11 @@ export function AddTodo() {
     }, []);
     return (
         <>
-            <button onClick={() => setDisplayPopUp(true)}
-                    className="bg-green-700 rounded p-2 text-white font-semibold m-auto flex pl-6 pr-6">Add todo
+            <button autoFocus onClick={() => setDisplayPopUp(true)}
+                    className="bg-green-700 rounded p-2 text-white font-semibold m-auto flex pl-6 pr-6">
+                Add todo
             </button>
-            {displayPopUp ?
-                <AddTodoPopUp toggleDisplay={setDisplayPopUp}/>
-                : ""}
+            {displayPopUp && <AddTodoPopUp toggleDisplay={setDisplayPopUp}/>}
         </>
     )
 }

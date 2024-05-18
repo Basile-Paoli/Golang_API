@@ -47,9 +47,9 @@ export function DisplayTodoList() {
 
     return (
         <>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 m-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 m-4 min-w-72">
                 {todos.map((todo) => (
-                    <div key={todo.id} className="bg-gray-300  rounded-lg  p-4 border-2 border-black ">
+                    <div key={todo.id} className="bg-gray-300  rounded-lg  p-4 border-2 border-black min-w-32">
                         <h2 className="text-xl font-semibold ">{todo.title}</h2>
                         <div className="mt-2 flex items-center">
                             <input type="checkbox" checked={todo.done}
