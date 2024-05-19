@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import {memo, useEffect, useRef, useState} from "react";
 import {AddTodoPopUp} from "./AddTodoPopUp.jsx";
 
 export function AddTodo() {
@@ -25,5 +25,8 @@ export function AddTodo() {
         </>
     )
 }
+
+const AddTodoMemo = memo(AddTodo);
+export default AddTodoMemo
 
 

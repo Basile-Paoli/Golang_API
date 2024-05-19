@@ -4,7 +4,7 @@ import {apiUrl} from "../App.jsx";
 import PropTypes from "prop-types";
 
 export function AddTodoPopUp({toggleDisplay}) {
-    const {setTodos} = useContext(TodosContext)
+    const setTodos = useContext(TodosContext)
     const popUpRef = useRef(null);
     const inputRef = useRef(null);
 
